@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>TETRIS - 회원가입</title>
+    <link rel="stylesheet" href="css/SighnUp_style.css">
+</head>
+<body>
+    <div class="login-box">
+        <h1 style="text-align: center; color: #f1c40f; border-bottom: 2px solid #444; padding-bottom: 15px; margin-bottom: 25px;">회원 가입</h1>
+        
+        <label for="id">아이디</label> <div style="display: flex; gap: 8px; width: 100%;">
+            <input type="text" id="id" style="flex: 1;" oninput="resetDuplication()" placeholder="아이디" maxlength="10">
+            <button onclick="duplicationCheck()" style="height: 40px; padding: 0 15px;">Check</button>
+        </div>
+
+        <div id="id-msg" class="msg-text"></div>
+
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" oninput="checkPasswordStrength()" placeholder="8~16자의 영문 대소문자, 숫자, 특수문자" maxlength="16">
+        
+        <div id="password-msg" class="msg-text"></div>
+
+        <label for="password-check">비밀번호 확인</label>
+        <input type="password" id="password-check" oninput="checkPasswordSame()" placeholder="비밀번호 확인" maxlength="16">
+
+        <div id="check-password-msg" class="msg-text"></div>
+
+        <br>
+        <button onclick="SignUp()" style="height: 50px; font-size: 20px; margin-top: 10px;">가입하기</button>
+    </div>
+
+    <script src="js/SighnUp_script.js"></script>
+</body>
+</html>

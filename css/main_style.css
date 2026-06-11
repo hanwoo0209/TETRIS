@@ -1,0 +1,382 @@
+/* ==========================================
+    기본 리셋 및 전체 배경 (Dark Theme)
+========================================== */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth; /* a 태그 링크 이동 시 부드럽게 스크롤 */
+}
+
+body{
+    background-color: #151515; /* 깊고 어두운 메인 배경 */
+    color: #e0e0e0;
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    line-height: 1.6;
+}
+
+/* ==========================================
+    상단 헤더 구역 (Header)
+========================================== */
+.top-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e1e1e;
+    padding: 15px 40px;
+    border-bottom: 3px solid #f1c40f;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: sticky; /* 스크롤을 내려도 상단에 고정 */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left h1{
+    color: #f1c40f;
+    font-size: 28px;
+    letter-spacing: 3px;
+    font-weight: 900;
+}
+
+.header-right a{
+    text-decoration: none;
+    color: #f1c40f;
+    margin-left: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.hidden{ 
+    display: none;
+}
+
+/* ==========================================
+    메인 3단 레이아웃 (CSS Grid)
+========================================== */
+.main-container{
+    display: grid;
+    /* 왼쪽 220px, 가운데 남은 공간 쫙 펴기, 오른쪽 250px */
+    grid-template-columns: 220px 1fr 250px;
+    gap: 25px;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+    align-items: start; /* 콘텐츠 길이에 맞춰 높이 조절 */
+}
+
+/* 타겟 위치 스크롤 마진 (헤더에 가려짐 방지) */
+#game-zone, #wiki-zone, #ranking-zone,
+#controls, #blocks, #srs, #hold, #drop, #ghost, #bag{
+    scroll-margin-top: 100px; 
+}
+
+/* ==========================================
+    좌측 네비게이터 & 우측 랭킹 (Sticky Sidebar)
+========================================== */
+.left-nav, .right-ranking{
+    background-color: #222;
+    padding: 25px 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    
+    /* 스크롤을 따라다니게 만드는 핵심 속성 */
+    position: sticky;
+    top: 100px;           
+    height: fit-content;  
+}
+
+.left-nav h2, .right-ranking h2{
+    color: #fff;
+    font-size: 18px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* 네비게이터 메인 리스트 */
+.left-nav ul{ list-style: none; }
+.left-nav li{ margin-bottom: 12px; }
+.left-nav a{
+    color: #bbb;
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    transition: all 0.2s;
+}
+.left-nav a:hover{
+    color: #f1c40f;
+    transform: translateX(5px);
+}
+
+/* 네비게이터 서브 메뉴 (위키 목차) */
+.sub-nav{
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-left: 25px;
+    margin-left: 10px;
+    border-left: 2px solid #555;
+}
+.sub-nav li{ margin-bottom: 12px; }
+.sub-nav a{
+    font-size: 14px; 
+    color: #888;
+}
+.sub-nav a:hover{
+    color: #f1c40f;
+    transform: translateX(3px);
+}
+
+/* 랭킹 리스트 */
+.ranking-list{
+    padding-left: 25px;
+    color: #aaa;
+}
+.ranking-list li{
+    margin-bottom: 15px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.ranking-list .player{
+    display: inline-block;
+    width: 100px;
+    color: #ddd;
+}
+.ranking-list .score{
+    color: #00d2d3;
+    font-weight: bold;
+}
+
+/* ==========================================
+    중앙 구역 (게임 + 위키 베이스)
+========================================== */
+.center-main{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* iframe 게임 삽입 영역 */
+.game-section{
+    background-color: #222;
+    border-radius: 8px;
+    border: 1px solid #333;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* 큰 화면 플레이 버튼 영역 */
+.fullscreen-link-wrapper{
+    text-align: center;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-top: 1px solid #333; /* iframe과 버튼 사이를 가르는 선 */
+}
+
+.btn-fullscreen{
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #f1c40f;
+    color: #111;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 900;
+    border-radius: 6px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 0 #b7950b; /* 입체적인 버튼 그림자 효과 */
+}
+
+.btn-fullscreen:hover{
+    background-color: #ffd84d;
+    transform: translateY(2px); /* 마우스 올리면 살짝 눌리는 효과 */
+    box-shadow: 0 2px 0 #b7950b;
+}
+
+/* 위키 섹션 껍데기 */
+.wiki-section{
+    background-color: #222;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+.wiki-header h2{ font-size: 26px; color: #fff; }
+.wiki-header hr{
+    border: 0;
+    height: 1px;
+    background-color: #444;
+    margin: 15px 0 25px 0;
+}
+
+/* ==========================================
+    위키 아코디언 메인 스타일 (details/summary)
+========================================== */
+.wiki-block{
+    margin-bottom: 20px;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+/* 브라우저 기본 세모 숨기기 */
+.wiki-title::-webkit-details-marker{ display: none; }
+.wiki-title{
+    list-style: none; 
+    outline: none;
+    font-size: 18px;
+    color: #f1c40f;
+    border-left: 4px solid #f1c40f;
+    padding-left: 10px;
+    margin-bottom: 0; 
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    user-select: none;
+    transition: color 0.2s;
+    font-weight: bold;
+}
+.wiki-title:hover{ color: #ffd84d; }
+
+/* 우측 커스텀 화살표 */
+.arrow{
+    font-size: 14px;
+    color: #888;
+    transition: transform 0.3s ease;
+}
+
+/* 🚨 HTML5 details 태그가 열렸을 때 화살표 회전 */
+details[open] .arrow{
+    transform: rotate(180deg);
+}
+
+/* 아코디언 내부 콘텐츠 */
+.wiki-detail{
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #444; 
+}
+.wiki-detail p{ color: #ccc; margin-bottom: 10px; }
+.wiki-detail ul{ padding-left: 20px; color: #ccc; }
+.wiki-detail li{ margin-bottom: 8px; }
+
+/* ==========================================
+    위키 테이블 및 중첩 움짤 아코디언
+========================================== */
+.wiki-table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    border: 2px solid #444;
+}
+.wiki-table th, .wiki-table td{
+    border: 1px solid #444;
+    padding: 12px 15px;
+    text-align: left;
+}
+.wiki-table th{ background-color: #333; color: #fff; width: 30%; }
+.wiki-table td{ color: #bbb; }
+.wiki-table strong{ color: #f1c40f; }
+
+/* 표 내부 동작 설명 아코디언 */
+.action-details summary::-webkit-details-marker{ display: none; }
+.action-details summary{
+    list-style: none;
+    display: flex;             
+    justify-content: space-between; 
+    align-items: center;
+    cursor: pointer;
+    padding: 4px 0;
+    transition: color 0.2s;
+    outline: none;
+}
+.action-details summary:hover{ color: #f1c40f; }
+
+.action-arrow{
+    font-size: 11px;
+    color: #777;
+    transition: transform 0.3s ease;
+}
+
+details.action-details[open] .action-arrow{
+    transform: rotate(180deg);
+    color: #f1c40f;
+}
+
+/* 움짤(GIF) 박스 디자인 */
+.gif-box{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #151515;
+    border: 1px solid #333;
+    border-radius: 6px;
+    text-align: center; 
+}
+.gif-box img{
+    max-width: 100%; 
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* ==========================================
+   블록 종류 리스트 디테일 레이아웃
+========================================== */
+
+/* 각 블록 설명 항목(li) 간의 여백 */
+.block-list li{
+    margin-bottom: 25px;
+}
+
+/* 설명 글 아래에 간격 배치 */
+.block-list li p{
+    margin-bottom: 10px;
+}
+
+/* 이미지를 감싸는 가로 정렬 바구니 (Flexbox) */
+.img-group{
+    display: flex;
+    gap: 15px;          /* 이미지 2개 사이의 좌우 간격 */
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* 블록 이미지 자체 스타일 */
+.block-img{
+    height: 60px;       /* 이미지 높이를 일정하게 고정 */
+    width: auto;        /* 가로 비율은 원본 이미지에 맞춤 */
+    border-radius: 4px;
+    background-color: #111; /* 블록 이미지가 잘 보이도록 어두운 배경 처리 */
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+/* ==========================================
+   이미지 설명글(Caption) 스타일
+========================================== */
+
+/* 이미지+글씨를 담는 개별 바구니 */
+.img-box{
+    display: flex;
+    flex-direction: column; /* 이미지 밑에 글씨가 오도록 세로 정렬 */
+    align-items: center;    /* 이미지와 글씨 모두 가운데 정렬 */
+    text-align: center;
+}
+
+/* 이미지 스타일 */
+.img-box img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #333;
+    margin-bottom: 8px;    /* 이미지와 아래 설명글 사이의 좁은 간격 */
+}
+
+/* 이미지 밑 작은 설명글 디자인 */
+.img-caption{
+    font-size: 12.5px;     /* 본문보다 작은 폰트 크기 */
+    color: #888;           /* 회색 톤으로 시선 분산 방지 */
+    font-weight: normal;
+    letter-spacing: -0.5px; /* 가독성을 위한 자간 조절 */
+}

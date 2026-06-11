@@ -1,0 +1,117 @@
+body{
+    margin: 0; /* 브라우저 기본 여백 제거 */
+    height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
+    display: grid; /* Grid 레이아웃 활성화 */
+    place-items: center; /* 수직(행) 및 수평(열) 정중앙 배치 */
+    background-color: #151515; /* 메인 테마 다크 배경색으로 변경 */
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    color: #e0e0e0;
+}
+
+/* 로그인 박스 */
+.login-box{
+    background: #222; /* 다크 테마에 맞춘 어두운 박스 배경 */
+    padding: 40px;
+    border-radius: 8px; /* 메인 테마와 일치하도록 곡률 수정 */
+    border: 1px solid #333; /* 위키 박스와 동일한 테두리 추가 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); /* 그림자 효과 다크모드에 맞춰 강화 */
+
+    display: flex;
+    flex-direction: column; /* 자식 요소들을 세로로 쌓음 */
+    width: 320px; /* 박스의 너비를 고정하여 모양을 잡아줌 */
+}
+
+.login-box h1{
+    color: #f1c40f; /* 테트리스 노란색 포인트 컬러 적용 */
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 15px;
+}
+
+.login-box label{
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+/* 로그인 박스 내부의 텍스트 입력창 */
+.login-box input{
+    height: 30px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #444; /* 어두운 테두리 */
+    background-color: #1a1a1a; /* 인풋 창 다크화 */
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.login-box input:focus{
+    border-color: #f1c40f; /* 포커스 시 노란색 하이라이트 */
+}
+
+/* 로그인 버튼 */
+.login-box button{
+    border-radius: 6px;
+    background-color: #f1c40f; /* 테트리스 노란색 아케이드 스타일 */
+    color: #111;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 0 #b7950b; /* 입체 버튼 그림자 효과 */
+}
+
+.login-box button:hover{
+    background-color: #ffd84d;
+    transform: translateY(2px); /* 누르는 느낌이 나는 인터랙션 */
+    box-shadow: 0 2px 0 #b7950b;
+}
+
+/* 로그인 입력창 아래 입력 내용 상태 표시 메시지 */
+.msg-text{
+    font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    height: 15px; /* 글자가 없을 때도 공간을 유지하여 화면이 덜컹거리지 않게 함 */
+}
+
+/* 로그인 유지 체크박스와 회원가입 링크 메뉴 */
+.bottom-menu{
+    display: flex;
+    justify-content: space-between; /* 왼쪽(체크박스)과 오른쪽(링크)을 양 끝으로 밀어냄 */
+    align-items: center; /* 요소들의 수직 높낮이를 정중앙으로 정렬 */
+    margin-top: 10px; /* 로그인 버튼과의 위쪽 간격 */
+}
+
+/* 체크박스와 글자를 감싸는 라벨 스타일 */
+.keep-login-label{
+    display: flex;
+    align-items: center; /* 체크박스와 글자를 중앙으로 정렬. 이 속성이 없을 경우 체크박스와 글자가 어긋남 */
+    font-size: 12px;
+    color: #aaa; /* 회원가입 링크와 통일감을 주는 색상 */
+    cursor: pointer;
+    gap: 5px; /* 체크박스와 글자 사이의 간격 */
+}
+
+.keep-login-label input{
+    accent-color: #f1c40f; /* 체크박스 포인트 컬러 */
+}
+
+/* 회원가입 링크 스타일 */
+.bottom-menu a{
+    text-decoration: none; 
+    color: #aaa; 
+    font-size: 13px; 
+    transition: color 0.2s;
+}
+
+/* 회원가입 링크에 마우스를 올릴 경우 */
+.bottom-menu a:hover{
+    color: #f1c40f; /* 테마 색상으로 하이라이트 */
+    text-decoration: underline; 
+}
